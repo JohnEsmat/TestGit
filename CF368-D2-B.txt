@@ -1,0 +1,58 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<algorithm>
+#include<cmath>
+#include<math.h>
+#include<iomanip>
+#include<string>
+#include<vector>
+#include<set>
+#include<map>
+#include<utility>
+#include<stack>
+#include<queue>
+#include<sstream>
+#include<bitset>
+#include<cstdio>
+#include<stdio.h>
+#include<cstring>
+#include <stdio.h>
+#include <math.h>
+#include <cmath>
+using namespace std;
+void fast()
+{
+	std::ios_base::sync_with_stdio(0);
+	cin.tie(0);cout.tie(0);
+}
+void in_out_txt()
+{
+	freopen("in.txt", "r", stdin);
+	freopen("out.txt", "w", stdout);
+}
+vector<long long>v,t;
+int main()
+{
+	//in_out_txt();
+	fast();
+	int n,m;
+	cin>>n>>m;
+	v.resize(n+1);
+	t.resize(n+1);
+	set<int>s;
+	for(int i=1;i<=n;i++)
+		cin>>v[i];
+	for(int i=n;i>=1;i--)
+	{
+		s.insert(v[i]);
+		t[i]=s.size();
+	}
+	while(m--)
+	{
+		int x;
+		cin>>x;
+		cout<<t[x]<<'\n';
+	}
+	//system("pause");
+	return 0;
+}
