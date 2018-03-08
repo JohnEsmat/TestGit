@@ -1,0 +1,130 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<algorithm>
+#include<cmath>
+#include<math.h>
+#include<iomanip>
+#include<string>
+#include<vector>
+#include<set>
+#include<map>
+#include<utility>
+#include<stack>
+#include<queue>
+#include<sstream>
+#include<bitset>
+#include<cstdio>
+#include<stdio.h>
+#include<cstring>
+using namespace std;
+void fast()
+{
+	std::ios_base::sync_with_stdio(0);
+	cin.tie(0);cout.tie(0);
+}
+void in_out_txt()
+{
+	freopen("in.txt", "r", stdin);
+	freopen("out.txt", "w", stdout);
+}
+int main()
+{
+	//in_out_txt();
+	fast();
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		string str1,str2;
+		cin>>str1>>str2;
+		bool before=true;
+		string tmp,key,value;
+		map<string,string>mp1,mp2;
+		set<string>all;
+		for(int i=1;i<str1.size();i++)
+		{
+			if(str1[i]==',' || str1[i]=='}')
+			{
+				value=tmp;
+				tmp="";
+				all.insert(key);
+				mp1[key]=value;
+				continue;
+			}
+			if(str1[i]==':')
+			{
+				key=tmp;
+				tmp="";
+				continue;
+			}
+			tmp+=str1[i];
+		}
+		for(int i=1;i<str2.size();i++)
+		{
+			if(str2[i]==',' || str2[i]=='}')
+			{
+				value=tmp;
+				tmp="";
+				all.insert(key);
+				mp2[key]=value;
+				continue;
+			}
+			if(str2[i]==':')
+			{
+				key=tmp;
+				tmp="";
+				continue;
+			}
+			tmp+=str2[i];
+		}
+		vector<string>pos,neg,mul;
+		set<string>::iterator it;
+		for(it=all.begin();it!=all.end();it++)
+		{
+			if(mp1[*it]!=mp2[*it] && mp1[*it]!="" && mp2[*it]!="")
+				mul.push_back(*it);
+			else if(mp1[*it]!="" && mp2[*it]=="")
+				neg.push_back(*it);
+			else if(mp1[*it]=="" && mp2[*it]!="")
+				pos.push_back(*it);
+		}
+		if(pos.size()>0)
+		{
+			cout<<"+";
+			for(int i=0;i<pos.size();i++)
+			{
+				if(i!=pos.size()-1)
+					cout<<pos[i]<<",";
+				else if(i==pos.size()-1)
+					cout<<pos[i]<<endl;
+			}
+		}
+		if(neg.size()>0)
+		{
+			cout<<"-";
+			for(int i=0;i<neg.size();i++)
+			{
+				if(i!=neg.size()-1)
+					cout<<neg[i]<<",";
+				else if(i==neg.size()-1)
+					cout<<neg[i]<<endl;
+			}
+		}
+		if(mul.size()>0)
+		{
+			cout<<"*";
+			for(int i=0;i<mul.size();i++)
+			{
+				if(i!=mul.size()-1)
+					cout<<mul[i]<<",";
+				else if(i==mul.size()-1)
+					cout<<mul[i]<<endl;
+			}
+		}
+		if(pos.size()==0 && neg.size()==0 && mul.size()==0)
+			cout<<"No changes"<<endl;
+		cout<<endl;
+	}
+	//system("pause");
+	return 0;
+}

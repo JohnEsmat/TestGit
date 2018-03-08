@@ -1,0 +1,62 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<algorithm>
+#include<cmath>
+#include<math.h>
+#include<iomanip>
+#include<string>
+#include<vector>
+#include<set>
+#include<map>
+#include<utility>
+#include<stack>
+#include<queue>
+#include<sstream>
+#include<bitset>
+#include<cstdio>
+#include<stdio.h>
+#include<cstring>
+#include <stdio.h>
+#include <math.h>
+#include <cmath>
+using namespace std;
+void fast()
+{
+	std::ios_base::sync_with_stdio(0);
+	cin.tie(0);cout.tie(0);
+}
+void in_out_txt()
+{
+	freopen("in.txt", "r", stdin);
+	freopen("out.txt", "w", stdout);
+}
+int main()
+{
+	//in_out_txt();
+	fast();
+	int n,m;
+	while(cin>>n>>m && n && m)
+	{
+		map<int,int>mp;
+		while(n--)
+		{
+			int x;
+			cin>>x;
+			mp[x]++;
+		}
+		while(m--)
+		{
+			int x;
+			cin>>x;
+			mp[x]++;
+		}
+		int cnt=0;
+		map<int,int>::iterator it;
+		for(it=mp.begin();it!=mp.end();it++)
+			if(mp[it->first]==2)
+				cnt++;
+		cout<<cnt<<'\n';
+	}
+	//system("pause");
+	return 0;
+}
