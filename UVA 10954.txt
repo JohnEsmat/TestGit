@@ -1,0 +1,55 @@
+#include<iostream>
+#include<algorithm>
+#include<cmath>
+#include<iomanip>
+#include<string>
+#include<vector>
+#include<set>
+#include<map>
+#include<utility>
+#include<stack>
+#include<queue>
+#include<sstream>
+#include<bitset>
+#include<cstdio>
+using namespace std;
+void fast()
+{
+	std::ios_base::sync_with_stdio(0);
+	cin.tie(0);cout.tie(0);
+}
+void in_out_txt()
+{
+	freopen("in.txt", "r", stdin);
+	freopen("out.txt", "w", stdout);
+}
+vector<int>v;
+int main()
+{
+	//in_out_txt();
+	fast();
+	int n;
+	while(cin>>n && n)
+	{
+		v.resize(n);
+		for(int i=0;i<n;i++)
+			cin>>v[i];
+		sort(v.begin(),v.end());
+		int cnt=0;
+		for(int i=0;i<n-1;i++)
+		{
+			if(v.size()==1)
+				break;
+			int sum=v[i]+v[i+1];
+			cnt+=sum;
+			v.erase(v.begin()+0);
+			v.erase(v.begin()+0);
+			v.insert(v.begin()+0,sum);
+			sort(v.begin(),v.end());
+			i--;
+		}
+		cout<<cnt<<endl;
+	}
+	//system("pause");
+	return 0;
+}
