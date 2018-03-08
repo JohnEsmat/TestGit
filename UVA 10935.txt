@@ -1,0 +1,57 @@
+#include<iostream>
+#include<algorithm>
+#include<cmath>
+#include<iomanip>
+#include<string>
+#include<vector>
+#include<set>
+#include<map>
+#include<utility>
+#include<stack>
+#include<queue>
+#include<sstream>
+#include<bitset>
+#include<cstdio>
+using namespace std;
+void fast()
+{
+	std::ios_base::sync_with_stdio(0);
+	cin.tie(0);cout.tie(0);
+}
+void in_out_txt()
+{
+	freopen("in.txt", "r", stdin);
+	freopen("out.txt", "w", stdout);
+}
+int main()
+{
+	//in_out_txt();
+	fast();
+	int n;
+	while(cin>>n && n)
+	{
+		if(n==1)
+		{
+			cout<<"Discarded cards:"<<endl;
+			cout<<"Remaining card: "<<1<<endl;
+			continue;
+		}
+		queue<int>q;
+		for(int i=1;i<=n;i++)
+			q.push(i);
+		cout<<"Discarded cards: ";
+		while(q.size()>2)
+		{
+			cout<<q.front()<<", ";
+			q.pop();
+			int val=q.front();
+			q.pop();
+			q.push(val);
+		}
+		cout<<q.front()<<endl;
+		q.pop();
+		cout<<"Remaining card: "<<q.front()<<endl;
+	}
+	//system("pause");
+	return 0;
+}

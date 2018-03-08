@@ -1,0 +1,64 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<algorithm>
+#include<cmath>
+#include<math.h>
+#include<iomanip>
+#include<string>
+#include<vector>
+#include<set>
+#include<map>
+#include<utility>
+#include<stack>
+#include<queue>
+#include<sstream>
+#include<bitset>
+#include<cstdio>
+#include<stdio.h>
+#include<cstring>
+using namespace std;
+void fast()
+{
+	std::ios_base::sync_with_stdio(0);
+	cin.tie(0);cout.tie(0);
+}
+void in_out_txt()
+{
+	freopen("in.txt", "r", stdin);
+	freopen("out.txt", "w", stdout);
+}
+int main()
+{
+	//in_out_txt();
+	fast();
+	string str;
+	while(cin>>str)
+	{
+		bool ok=false; // true -> end , false -> first
+		string tmp,res;
+		for(int i=0;i<str.size();i++)
+		{
+			if(str[i]=='[')
+			{
+				ok=true;
+				res=tmp+res;
+				tmp="";
+			}
+			else if(str[i]==']')
+			{
+				ok=false;
+				res=tmp+res;
+				tmp="";
+			}
+			if(ok && str[i]!='[')
+				tmp.push_back(str[i]);
+			else if(!ok && str[i]!=']')
+				res.push_back(str[i]);
+		}
+		if(tmp.size()>0)
+			res=tmp+res;
+		cout<<res<<endl;
+	}
+	//system("pause");
+	return 0;
+}

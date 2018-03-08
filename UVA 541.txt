@@ -1,0 +1,94 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<algorithm>
+#include<cmath>
+#include<math.h>
+#include<iomanip>
+#include<string>
+#include<vector>
+#include<set>
+#include<map>
+#include<utility>
+#include<stack>
+#include<queue>
+#include<sstream>
+#include<bitset>
+#include<cstdio>
+#include<stdio.h>
+#include<cstring>
+#include <stdio.h>
+#include <math.h>
+#include <cmath>
+using namespace std;
+void fast()
+{
+	std::ios_base::sync_with_stdio(0);
+	cin.tie(0);cout.tie(0);
+}
+void in_out_txt()
+{
+	freopen("in.txt", "r", stdin);
+	freopen("out.txt", "w", stdout);
+}
+int main()
+{
+	//in_out_txt();
+	fast();
+	int n;
+	while(cin>>n && n)
+	{
+		bool a[105][105];
+		for(int i=1;i<=n;i++)
+			for(int j=1;j<=n;j++)
+				cin>>a[i][j];
+		int idxI=-1,idxJ=-1;
+		int c=0;
+		for(int i=1;i<=n;i++)
+		{
+			int cnt=0;
+			for(int j=1;j<=n;j++)
+			{
+				if(a[i][j]==1)
+					cnt++;
+			}
+			if(cnt%2!=0)
+			{
+				idxI=i;
+				c++;
+			}
+		}
+		if(c>1)
+		{
+			cout<<"Corrupt\n";
+			continue;
+		}
+		c=0;
+		for(int i=1;i<=n;i++)
+		{
+			int cnt=0;
+			for(int j=1;j<=n;j++)
+			{
+				if(a[j][i]==1)
+					cnt++;
+			}
+			if(cnt%2!=0)
+			{
+				idxJ=i;
+				c++;
+			}
+		}
+		if(c>1)
+		{
+			cout<<"Corrupt\n";
+			continue;
+		}
+		if(c==1)
+		{
+			cout<<"Change bit ("<<idxI<<","<<idxJ<<")\n";
+			continue;
+		}
+		cout<<"OK\n";
+	}
+	//system("pause");
+	return 0;
+}

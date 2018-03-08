@@ -1,0 +1,65 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<algorithm>
+#include<cmath>
+#include<math.h>
+#include<iomanip>
+#include<string>
+#include<vector>
+#include<set>
+#include<map>
+#include<utility>
+#include<stack>
+#include<queue>
+#include<sstream>
+#include<bitset>
+#include<cstdio>
+#include<stdio.h>
+#include<cstring>
+#include <stdio.h>
+#include <math.h>
+#include <cmath>
+using namespace std;
+void fast()
+{
+	std::ios_base::sync_with_stdio(0);
+	cin.tie(0);cout.tie(0);
+}
+void in_out_txt()
+{
+	freopen("in.txt", "r", stdin);
+	freopen("out.txt", "w", stdout);
+}
+int main()
+{
+	//in_out_txt();
+	fast();
+	string str;
+	set<string>s;
+	while(cin>>str)
+	{
+		string tmp;
+		for(int i=0;i<(int)str.size();i++)
+		{
+			if(str[i]>='A' && str[i]<='Z')
+				str[i]+=32;
+			if(str[i]>='a' && str[i]<='z')
+				tmp+=str[i];
+			else
+			{
+				if(tmp.size()>0)
+				{
+					s.insert(tmp);
+					tmp="";
+				}
+			}
+		}
+		if(tmp.size()>0)
+			s.insert(tmp);
+	}
+	set<string>::iterator it;
+	for(it=s.begin();it!=s.end();it++)
+		cout<<*it<<'\n';
+	//system("pause");
+	return 0;
+}

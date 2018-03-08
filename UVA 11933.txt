@@ -1,0 +1,82 @@
+#include<iostream>
+#include<algorithm>
+#include<cmath>
+#include<iomanip>
+#include<string>
+#include<vector>
+#include<set>
+#include<map>
+#include<utility>
+#include<stack>
+#include<queue>
+#include<sstream>
+#include<bitset>
+#include<cstdio>
+using namespace std;
+void fast()
+{
+	std::ios_base::sync_with_stdio(0);
+	cin.tie(0);cout.tie(0);
+}
+void in_out_txt()
+{
+	freopen("in.txt", "r", stdin);
+	freopen("out.txt", "w", stdout);
+}
+string toBinary(long long n)
+{
+	string str;
+	while(n!=0)
+	{
+		int rem=n%2;
+		char c=rem+'0';
+		str=c+str;
+		n/=2;
+	}
+	return str;
+}
+unsigned long long toDecimal(string n)
+{
+	long long val=0;
+	for(int i=n.size()-1,j=0;i>=0;i--,j++)
+	{
+		if(n[i]=='1')
+			val+=pow(2.0,j);
+	}
+	return val;
+}
+int main()
+{
+	//in_out_txt();
+	fast();
+	long long n;
+	while(cin>>n && n)
+	{
+		string str=toBinary(n);
+		string a,b;
+		int cnt=0;
+		for(int i=str.size()-1;i>=0;i--)
+		{
+			if(str[i]=='1')
+				cnt++;
+			if(str[i]=='1' && cnt%2!=0)
+			{
+				a=str[i]+a;
+				b='0'+b;
+			}
+			else if(str[i]=='1' && cnt%2==0)
+			{
+				b=str[i]+b;
+				a='0'+a;
+			}
+			if(str[i]=='0')
+			{
+				a='0'+a;
+				b='0'+b;
+			}
+		}
+		cout<<toDecimal(a)<<" "<<toDecimal(b)<<endl;
+	}
+	//system("pause");
+	return 0;
+}
