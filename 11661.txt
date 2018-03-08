@@ -1,0 +1,73 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<algorithm>
+#include<cmath>
+#include<math.h>
+#include<iomanip>
+#include<string>
+#include<vector>
+#include<set>
+#include<map>
+#include<utility>
+#include<stack>
+#include<queue>
+#include<sstream>
+#include<bitset>
+#include<cstdio>
+#include<stdio.h>
+#include<cstring>
+#include <stdio.h>
+#include <math.h>
+#include <cmath>
+using namespace std;
+void fast()
+{
+	std::ios_base::sync_with_stdio(0);
+	cin.tie(0);cout.tie(0);
+}
+void in_out_txt()
+{
+	freopen("in.txt", "r", stdin);
+	freopen("out.txt", "w", stdout);
+}
+int main()
+{
+	//in_out_txt();
+	fast();
+	int n;
+	while(cin>>n && n)
+	{
+		string str,tmp;
+		cin>>str;
+		int dis=str.size(),r=-1,d=-1;
+		bool ok=false;
+		for(int i=0;i<(int)str.size();i++)
+		{
+			if(str[i]=='Z')
+			{
+				ok=true;
+				break;
+			}
+			else if(str[i]=='R')
+			{
+				r=i;
+				if(r>-1 && d>-1)
+					dis=min(dis,abs(r-d));
+			}
+			else if(str[i]=='D')
+			{
+				d=i;
+				if(r>-1 && d>-1)
+					dis=min(dis,abs(r-d));
+			}
+		}
+		if(ok)
+		{
+			cout<<0<<'\n';
+			continue;
+		}
+		cout<<dis<<endl;
+	}
+	//system("pause");
+	return 0;
+}
