@@ -1,0 +1,60 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<algorithm>
+#include<cmath>
+#include<math.h>
+#include<iomanip>
+#include<string>
+#include<vector>
+#include<set>
+#include<map>
+#include<utility>
+#include<stack>
+#include<queue>
+#include<sstream>
+#include<bitset>
+#include<cstdio>
+#include<stdio.h>
+#include<cstring>
+#include <stdio.h>
+#include <math.h>
+#include <cmath>
+using namespace std;
+void fast()
+{
+	std::ios_base::sync_with_stdio(0);
+	cin.tie(0);cout.tie(0);
+}
+void in_out_txt()
+{
+	freopen("in.txt", "r", stdin);
+	freopen("out.txt", "w", stdout);
+}
+int main()
+{
+	//in_out_txt();
+	fast();
+	int n;
+	while(cin>>n && n)
+	{
+		cin.ignore();
+		vector<int>v;
+		while(n--)
+		{
+			string str;
+			getline(cin,str);
+			int cnt=0;
+			for(int i=0;i<str.size();i++)
+				if(str[i]=='X')
+					cnt++;
+			v.push_back(cnt);
+		}
+		int cnt=0;
+		sort(v.rbegin(),v.rend());
+		for(int i=1;i<v.size();i++)
+			cnt+=abs(v[i]-v[0]);
+		cout<<cnt<<'\n';
+	}
+	//system("pause");
+	return 0;
+}
