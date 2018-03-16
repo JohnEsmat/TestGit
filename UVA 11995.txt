@@ -1,0 +1,89 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<algorithm>
+#include<cmath>
+#include<math.h>
+#include<iomanip>
+#include<string>
+#include<vector>
+#include<set>
+#include<map>
+#include<utility>
+#include<stack>
+#include<queue>
+#include<sstream>
+#include<bitset>
+#include<cstdio>
+#include<stdio.h>
+#include<cstring>
+#include <stdio.h>
+#include <math.h>
+#include <cmath>
+#include <unordered_map>
+using namespace std;
+void fast()
+{
+	std::ios_base::sync_with_stdio(0);
+	cin.tie(0);cout.tie(0);
+}
+void in_out_txt()
+{
+	freopen("in.txt", "r", stdin);
+	freopen("out.txt", "w", stdout);
+}
+int main()
+{
+	//in_out_txt();
+	fast();
+	int n;
+	while(cin>>n)
+	{
+		bool st=true,qu=true,pr=true,im=false;
+		stack<int>s;
+		queue<int>q;
+		priority_queue<int>pq;
+		while(n--)
+		{
+			int x,y;
+			cin>>x>>y;
+			if(x==1)
+			{
+				s.push(y);
+				q.push(y);
+				pq.push(y);
+			}
+			else if(x==2)
+			{
+				if(s.size()==0)
+				{
+					im=true;
+					continue;
+				}
+				int S=s.top();
+				s.pop();
+				int Q=q.front();
+				q.pop();
+				int P=pq.top();
+				pq.pop();
+				if(S!=y)
+					st=false;
+				if(Q!=y)
+					qu=false;
+				if(P!=y)
+					pr=false;
+			}
+		}
+		if((!st && !qu && !pr) || im)
+			cout<<"impossible\n";
+		else if((st && qu && pr) || (st && qu) || (qu && pr) || (pr && st))
+			cout<<"not sure\n";
+		else if(st)
+			cout<<"stack\n";
+		else if(qu)
+			cout<<"queue\n";
+		else if(pr)
+			cout<<"priority queue\n";
+	}
+	//system("pause");
+	return 0;
+}
