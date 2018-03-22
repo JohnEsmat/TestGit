@@ -1,0 +1,66 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<algorithm>
+#include<cmath>
+#include<math.h>
+#include<iomanip>
+#include<string>
+#include<vector>
+#include<set>
+#include<map>
+#include<utility>
+#include<stack>
+#include<queue>
+#include<sstream>
+#include<bitset>
+#include<cstdio>
+#include<stdio.h>
+#include<cstring>
+#include <stdio.h>
+#include <math.h>
+#include <cmath>
+#include <unordered_map>
+using namespace std;
+void fast()
+{
+	std::ios_base::sync_with_stdio(0);
+	cin.tie(0);cout.tie(0);
+}
+void in_out_txt()
+{
+	freopen("in.txt", "r", stdin);
+	freopen("out.txt", "w", stdout);
+}
+int main()
+{
+	//in_out_txt();
+	fast();
+	int n;
+	cin>>n;
+	while(n--)
+	{
+		int a,b,c;
+		cin>>a>>b>>c;
+		bool ok=false;
+		for(int i=-100;i<100;i++)
+		{
+			for(int j=i+1;j<100;j++)
+			{
+				for(int k=j+1;k<100;k++)
+				{
+					if(i+j+k==a && i*j*k==b && i*i+j*j+k*k==c)
+					{
+						ok=true;
+						cout<<i<<" "<<j<<" "<<k<<"\n";
+						j=100;
+						i=100;
+					}
+				}
+			}
+		}
+		if(!ok)
+			cout<<"No solution.\n";
+	}
+	//system("pause");
+	return 0;
+}
