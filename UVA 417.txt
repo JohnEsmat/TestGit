@@ -1,0 +1,131 @@
+#include<iostream>
+#include<algorithm>
+#include<cmath>
+#include<iomanip>
+#include<string>
+#include<vector>
+#include<set>
+#include<map>
+#include<utility>
+#include<stack>
+#include<queue>
+#include<sstream>
+#include<bitset>
+#include<cstdio>
+using namespace std;
+void fast()
+{
+	std::ios_base::sync_with_stdio(0);
+	cin.tie(0);cout.tie(0);
+}
+void in_out_txt()
+{
+	freopen("in.txt", "r", stdin);
+	freopen("out.txt", "w", stdout);
+}
+int main()
+{
+	//in_out_txt();
+	fast();
+	map<string,int>mp;
+	string str;
+	int cnt=1;
+	for(char i='a';i<='z';i++)
+	{
+		str=i;
+		mp[str]=cnt;
+		cnt++;
+	}
+	str="";
+	for(char i='a';i<='z';i++)
+	{
+		str+=i;
+		for(char j=i+1;j<='z';j++)
+		{
+			str+=j;
+			mp[str]=cnt;
+			cnt++;
+			str.erase(1,1);
+		}
+		str.erase(0,1);
+	}
+	str="";
+	for(char i='a';i<='z';i++)
+	{
+		str+=i;
+		for(char j=i+1;j<='z';j++)
+		{
+			str+=j;
+			for(char k=j+1;k<='z';k++)
+			{
+				str+=k;
+				mp[str]=cnt;
+				cnt++;
+				str.erase(2,1);
+			}
+			str.erase(1,1);
+		}
+		str.erase(0,1);
+	}
+	str="";
+	for(char i='a';i<='z';i++)
+	{
+		str+=i;
+		for(char j=i+1;j<='z';j++)
+		{
+			str+=j;
+			for(char k=j+1;k<='z';k++)
+			{
+				str+=k;
+				for(char l=k+1;l<='z';l++)
+				{
+					str+=l;
+					mp[str]=cnt;
+					cnt++;
+					str.erase(3,1);
+				}
+				str.erase(2,1);
+			}
+			str.erase(1,1);
+		}
+		str.erase(0,1);
+	}
+	str="";
+	for(char i='a';i<='z';i++)
+	{
+		str+=i;
+		for(char j=i+1;j<='z';j++)
+		{
+			str+=j;
+			for(char k=j+1;k<='z';k++)
+			{
+				str+=k;
+				for(char l=k+1;l<='z';l++)
+				{
+					str+=l;
+					for(char m=l+1;m<='z';m++)
+					{
+						str+=m;
+						mp[str]=cnt;
+						cnt++;
+						str.erase(4,1);
+					}
+					str.erase(3,1);
+				}
+				str.erase(2,1);
+			}
+			str.erase(1,1);
+		}
+		str.erase(0,1);
+	}
+	string word;
+	while(cin>>word)
+	{
+		if(mp.count(word)>0)
+			cout<<mp[word]<<endl;
+		else
+			cout<<0<<endl;
+	}
+	//system("pause");
+	return 0;
+}
