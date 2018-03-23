@@ -1,0 +1,72 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<algorithm>
+#include<cmath>
+#include<math.h>
+#include<iomanip>
+#include<string>
+#include<vector>
+#include<set>
+#include<map>
+#include<utility>
+#include<stack>
+#include<queue>
+#include<sstream>
+#include<bitset>
+#include<cstdio>
+#include<stdio.h>
+#include<cstring>
+#include <stdio.h>
+#include <math.h>
+#include <cmath>
+#include <unordered_map>
+using namespace std;
+void fast()
+{
+	std::ios_base::sync_with_stdio(0);
+	cin.tie(0);cout.tie(0);
+}
+void in_out_txt()
+{
+	freopen("in.txt", "r", stdin);
+	freopen("out.txt", "w", stdout);
+}
+int main()
+{
+	//in_out_txt();
+	fast();
+	int n;
+	string str;
+	cin>>n>>str;
+	int p1=0,p2=0;
+	set<char>s;
+	map<char,int>mp;
+	for(int i=0;i<n;i++)
+		s.insert(str[i]);
+	int sz=s.size();
+	s.clear();
+	s.insert(str[p2]);
+	mp[str[p2]]++;
+	int cnt=1e5;
+	while(p2<n && p1<n)
+	{
+		while(s.size()<sz)
+		{
+			p2++;
+			if(p2>=n)
+				break;
+			s.insert(str[p2]);
+			mp[str[p2]]++;
+		}
+		cnt=min(cnt,p2-p1+1);
+		mp[str[p1]]--;
+		if(mp[str[p1]]==0)
+		{
+			s.erase(s.find(str[p1]));
+		}
+		p1++;
+	}
+	cout<<cnt<<'\n';
+	//system("pause");
+	return 0;
+}
