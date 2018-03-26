@@ -1,0 +1,61 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<algorithm>
+#include<cmath>
+#include<math.h>
+#include<iomanip>
+#include<string>
+#include<vector>
+#include<set>
+#include<map>
+#include<utility>
+#include<stack>
+#include<queue>
+#include<sstream>
+#include<bitset>
+#include<cstdio>
+#include<stdio.h>
+#include<cstring>
+#include <stdio.h>
+#include <math.h>
+#include <cmath>
+#include <unordered_map>
+using namespace std;
+void fast()
+{
+	std::ios_base::sync_with_stdio(0);
+	cin.tie(0);cout.tie(0);
+}
+vector<long long>v,t;
+int main()
+{
+	//in_out_txt();
+	fast();
+	int n,s;
+	cin>>n>>s;
+	v.resize(n);
+	t.resize(n);
+	for(int i=0;i<n;i++)
+		cin>>v[i];
+	long long low=0,high=n-1,res1=0,res2=0;
+	while(low<=high)
+	{
+		long long mid=(low+high)/2;
+		for(int i=0;i<n;i++)
+			t[i]=v[i]+((i+1)*(mid+1));
+		sort(t.begin(),t.end());
+		for(int i=1;i<=mid;i++)
+			t[i]+=t[i-1];
+		if(t[mid]<=s)
+		{
+			res1=mid+1;
+			res2=t[mid];
+			low=mid+1;
+		}
+		else
+			high=mid-1;
+	}
+	cout<<res1<<' '<<res2<<'\n';
+	//system("pause");
+	return 0;
+}
