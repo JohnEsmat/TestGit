@@ -1,0 +1,99 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<algorithm>
+#include<cmath>
+#include<math.h>
+#include<iomanip>
+#include<string>
+#include<vector>
+#include<set>
+#include<map>
+#include<utility>
+#include<stack>
+#include<queue>
+#include<sstream>
+#include<bitset>
+#include<cstdio>
+#include<stdio.h>
+#include<cstring>
+#include <stdio.h>
+#include <math.h>
+#include <cmath>
+#include <unordered_map>
+using namespace std;
+void fast()
+{
+	std::ios_base::sync_with_stdio(0);
+	cin.tie(0);cout.tie(0);
+}
+vector<int>v,t;
+int main()
+{
+	//in_out_txt();
+	fast();
+	int n,m;
+	cin>>n>>m;
+	v.resize(n);
+	t.resize(n);
+	for(int i=0;i<n;i++)
+	{
+		cin>>v[i];
+		v[i]++;
+		t[i]=v[i];
+	}
+	int last=1e5;
+	bool chk=false;
+	for(int i=n-1;i>=0;i--)
+	{
+		if(v[i]>1)
+			break;
+		last=i;
+		chk=true;
+	}
+	long long low=0,high=1e15,final_res=-1;
+	while(low<=high)
+	{
+		bool ok=true;
+		long long mid=(low+high)/2,time=mid,user=m;
+		for(int i=0;i<n;i++)
+		{
+			if(chk && i==last)
+				break;
+			if(time==0 && user)
+				time=mid-i-1;
+			if(t[i]>=time)
+			{
+				t[i]-=time;
+				time=0;
+				user--;
+				if(user<1 && t[i]>0)
+				{
+					ok=false;
+					break;
+				}
+			}
+			else
+			{
+				time-=t[i];
+				t[i]=0;
+			}
+			if(user && t[i]>0)
+			{
+				time=mid-i-1;
+				i--;
+			}
+		}
+		if(ok)
+		{
+			final_res=mid;
+			high=mid-1;
+		}
+		else
+			low=mid+1;
+		for(int i=0;i<n;i++)
+			t[i]=v[i];
+	}
+	cout<<final_res<<'\n';
+	//system("pause");
+	return 0;
+}
