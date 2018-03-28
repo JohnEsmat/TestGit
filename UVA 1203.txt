@@ -1,0 +1,58 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<algorithm>
+#include<cmath>
+#include<math.h>
+#include<iomanip>
+#include<string>
+#include<vector>
+#include<set>
+#include<map>
+#include<utility>
+#include<stack>
+#include<queue>
+#include<sstream>
+#include<bitset>
+#include<cstdio>
+#include<stdio.h>
+#include<cstring>
+using namespace std;
+void fast()
+{
+	std::ios_base::sync_with_stdio(0);
+	cin.tie(0);cout.tie(0);
+}
+int main()
+{
+	//in_out_txt();
+	fast();
+	string str;
+	map<int,int>mp,id;
+	while(cin>>str && str!="#")
+	{
+		int x,y;
+		cin>>x>>y;
+		mp[x]=y;
+		id[x]=1;
+	}
+	map<int,int>::iterator i,j;
+	int q;
+	cin>>q;
+	while(q--)
+	{
+		long long res=1e6,key=0;
+		for(i=mp.begin(),j=id.begin();i!=mp.end();i++,j++)
+		{
+			long long one=i->second,two=j->second,value=i->first;
+			if(one*two<res)
+			{
+				res=one*two;
+				key=value;
+			}
+		}
+		id[key]++;
+		cout<<key<<endl;
+	}
+	//system("pause");
+	return 0;
+}
